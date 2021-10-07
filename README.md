@@ -4,17 +4,8 @@
     host: todo.zuri.chat
     basePath: /api/v1
 
-
 # Getting Started #
 Our API is organised around using HTTP verbs and REST. Our API accepts and returns JSON formatted payload
-
-# Authorization #
-User must be authenticated to use the Api 
-
-|  |  |
-| ------ | ------ |
-| Security Scheme Type | HTTP |
-| HTTP Authorization Scheme | bearer |
 
 # Fetch sidebar #
 This endpoint is commonly used to retrieve a list of component on the sidebar.
@@ -26,8 +17,7 @@ This endpoint is commonly used to retrieve a list of component on the sidebar.
 
 ```php
 curl --location --request GET 'https://todo.zuri.chat/api/v1/sidebar' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer {KEY}'
+--header 'Content-Type: application/json' 
 ```
 Sample Response
 ```json
@@ -73,8 +63,7 @@ This endpoint is commonly used to retrieve a plugin information
 
 ```php
 curl --location --request GET 'https://todo.zuri.chat/api/v1/info' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer {KEY}'
+--header 'Content-Type: application/json' 
 ```
 Sample Response
 ```json
@@ -97,8 +86,7 @@ This endpoint is commonly used to retrieve all user todos in a list
 
 ```php
 curl --location --request GET 'https://todo.zuri.chat/api/v1/user-todo' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer {KEY}'
+--header 'Content-Type: application/json'
 ```
 Body Params
 | Param	 | Required | Description |
@@ -115,7 +103,6 @@ Sample Response
       }
 ]
 ```
-
 # Fetch all Todo #
 This endpoint is commonly used to retrieve a todo in a list
 |  |  |
@@ -126,8 +113,7 @@ This endpoint is commonly used to retrieve a todo in a list
 
 ```php
 curl --location --request GET 'https://todo.zuri.chat/api/v1/all-todo' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer {KEY}'
+--header 'Content-Type: application/json' 
 ```
 Sample Response
 ```json
@@ -188,8 +174,7 @@ This endpoint is commonly used to retrieve a todo in a list
 
 ```php
 curl --location --request GET 'https://todo.zuri.chat/api/v1/todo/{id}/{user_id}/show'' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer {KEY}'
+--header 'Content-Type: application/json' 
 ```
 Sample Response
 ```json
@@ -288,8 +273,7 @@ This endpoint is commonly used to retrieve a list of all task
 
 ```php
 curl --location --request GET 'https://todo.zuri.chat/api/v1/task' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer {KEY}'
+--header 'Content-Type: application/json'
 ```
 Sample Response
 ```json
@@ -352,8 +336,7 @@ This endpoint is commonly used to retrieve a single task
 
 ```php
 curl --location --request GET 'https://todo.zuri.chat/api/v1/task/{id}/show' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer {KEY}'
+--header 'Content-Type: application/json' 
 ```
 Sample Response
 ```json
@@ -380,8 +363,7 @@ This endpoint is commonly used to retrieve a latest task by the current datetime
 
 ```php
 curl --location --request GET 'https://todo.zuri.chat/api/v1/task \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer {KEY}'
+--header 'Content-Type: application/json' 
 ```
 Sample Response
 ```json
@@ -539,8 +521,7 @@ This endpoint is commonly used to retrieve all archived Todo
 
 ```php
 curl --location --request GET 'https://todo.zuri.chat/api/v1/get-archived \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer {KEY}'
+--header 'Content-Type: application/json' 
 ```
 Sample Response
 ```json
