@@ -92,6 +92,7 @@ Body Params
 | Param	 | Required | Description |
 | ------ | ------ | ------ |
 | user_id |  yes | string |
+
 Sample Response
 ```json
 [
