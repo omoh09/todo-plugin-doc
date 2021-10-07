@@ -4,10 +4,6 @@
     host: todo.zuri.chat
     basePath: /api/v1
 
-[pookie](#pookie)
-[an example](#example "Title")
-
-
 
 # Getting Started #
 Our API is organised around using HTTP verbs and REST. Our API accepts and returns JSON formatted payload
