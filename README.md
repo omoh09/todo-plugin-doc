@@ -4,7 +4,11 @@
     host: todo.zuri.chat
     basePath: /api/v1
 
-[#](#anchors-in-markdown)
+[pookie](#pookie)
+[an example](#example "Title")
+
+
+
 # Getting Started #
 Our API is organised around using HTTP verbs and REST. Our API accepts and returns JSON formatted payload
 
@@ -87,16 +91,45 @@ Sample Response
       "sidebar_url": "https://todo.zuri.chat/api/sidebar"
 }
 ```   
+# Fetch User-Todos #
+This endpoint is commonly used to retrieve all user todos in a list
+|  |  |
+| ------ | ------ |
+| Request Type | ``` GET ``` |
+| Endpoint |  ``` /user-todo ``` |
+| Content Type |  ``` application/json ``` |
+
+```php
+curl --location --request GET 'https://todo.zuri.chat/api/v1/user-todo' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {KEY}'
+```
+Body Params
+| Param	 | Required | Description |
+| ------ | ------ | ------ |
+| user_id |  yes | string |
+Sample Response
+```json
+[
+      {
+            "type": "string",
+            "user_id": "string",
+            "title": "string",
+            "status": "string"
+      }
+]
+```
+
 # Fetch all Todo #
 This endpoint is commonly used to retrieve a todo in a list
 |  |  |
 | ------ | ------ |
 | Request Type | ``` GET ``` |
-| Endpoint |  ``` /todo ``` |
+| Endpoint |  ``` /all-todo ``` |
 | Content Type |  ``` application/json ``` |
 
 ```php
-curl --location --request GET 'https://todo.zuri.chat/api/v1/todo' \
+curl --location --request GET 'https://todo.zuri.chat/api/v1/all-todo' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {KEY}'
 ```
@@ -116,7 +149,7 @@ This endpoint is commonly used to create a todo
 |  |  |
 | ------ | ------ |
 | Request Type | ``` POST ``` |
-| Endpoint |  ``` /todo ``` |
+| Endpoint |  ``` /create-todo ``` |
 
 Body Params
 | Param	 | Required | Description |
@@ -131,7 +164,7 @@ Sample Request
 [
       {
             "type": "string",
-            "user_id": 0,
+            "user_id": string,
             "title": "string",
             "status": "string"
       }
@@ -154,11 +187,11 @@ This endpoint is commonly used to retrieve a todo in a list
 |  |  |
 | ------ | ------ |
 | Request Type | ``` GET ``` |
-| Endpoint |  ``` /todo/{todo_Id} ``` |
+| Endpoint |  ``` /todo/{id}/{user_id}/show' ``` |
 | Content Type |  ``` application/json ``` |
 
 ```php
-curl --location --request GET 'https://todo.zuri.chat/api/v1/todo/{todo_Id}' \
+curl --location --request GET 'https://todo.zuri.chat/api/v1/todo/{id}/{user_id}/show'' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {KEY}'
 ```
@@ -189,11 +222,12 @@ This endpoint is commonly used to update a todo
 |  |  |
 | ------ | ------ |
 | Request Type | ``` PUT ``` |
-| Endpoint |  ``` /todo/{todo_id} ``` |
+| Endpoint |  ``` /todo-update/{todoId}/{user_id} ``` |
 
 Body Params
 | Param	 | Required | Description |
 | ------ | ------ | ------ |
+| todoId |  yes | string |
 | user_id |  yes | string |
 Sample Request
 ```json
@@ -226,11 +260,12 @@ This endpoint is commonly used to delete a todo
 |  |  |
 | ------ | ------ |
 | Request Type | ``` DELETE ``` |
-| Endpoint |  ``` /todo/{todo_id} ``` |
+| Endpoint |  ``` /todo/{todoId}/delete/{user_id} ``` |
 
 Body Params
 | Param	 | Required | Description |
 | ------ | ------ | ------ |
+| todoId |  yes | string |
 | user_id |  yes | string |
 Sample Response
 ```json
@@ -316,11 +351,11 @@ This endpoint is commonly used to retrieve a single task
 |  |  |
 | ------ | ------ |
 | Request Type | ``` GET ``` |
-| Endpoint |  ``` /task/{task_Id} ``` |
+| Endpoint |  ``` /task/{id}/show ``` |
 | Content Type |  ``` application/json ``` |
 
 ```php
-curl --location --request GET 'https://todo.zuri.chat/api/v1/task/{task_Id}' \
+curl --location --request GET 'https://todo.zuri.chat/api/v1/task/{id}/show' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {KEY}'
 ```
@@ -367,47 +402,13 @@ Sample Response
       }
 ]
 ```
-# Toggle Archive Status #
-This endpoint is commonly used to toggle archive status
-|  |  |
-| ------ | ------ |
-| Request Type | ``` PUT ``` |
-| Endpoint |  ``` /task/{task_id} ``` |
-
-Body Params
-| Param	 | Required | Description |
-| ------ | ------ | ------ |
-| task_id |  yes | string |
-Sample Request
-```json
-[
-      {
-          "status": "int"
-      }
-]
-```
-Sample Response
-```json
-[
-      {
-           "status": 200,
-            "message": "task Archieved",
-            "data": {
-                "MatchedCount": 1,
-                "ModifiedCount": 1,
-                "UpsertedCount": 0,
-                "UpsertedID": null
-            }
-      }
-]
-```
 
 # Update a Task #
 This endpoint is commonly used to update a task
 |  |  |
 | ------ | ------ |
 | Request Type | ``` PUT ``` |
-| Endpoint |  ``` /task/{task_id} ``` |
+| Endpoint |  ``` /task/modify/{id} ``` |
 
 Body Params
 | Param	 | Required | Description |
@@ -463,5 +464,94 @@ Sample Response
       }
 ]
 ```
+# Archive Todo #
+This endpoint is commonly used to toggle archive status
+|  |  |
+| ------ | ------ |
+| Request Type | ``` PUT ``` |
+| Endpoint |  ``` /archive-todo/{todoId} ``` |
 
-[Back to the top](#Getting-Started)
+Body Params
+| Param	 | Required | Description |
+| ------ | ------ | ------ |
+| todoId |  yes | string |
+Sample Request
+```json
+[
+      {
+          "status": "int"
+      }
+]
+```
+Sample Response
+```json
+[
+      {
+           "status": 200,
+            "message": "task Archieved",
+            "data": {
+                "MatchedCount": 1,
+                "ModifiedCount": 1,
+                "UpsertedCount": 0,
+                "UpsertedID": null
+            }
+      }
+]
+```
+
+# unArchive Todo #
+This endpoint is commonly used to toggle archive status
+|  |  |
+| ------ | ------ |
+| Request Type | ``` PUT ``` |
+| Endpoint |  ``` /unarchive-todo/{todoId} ``` |
+
+Body Params
+| Param	 | Required | Description |
+| ------ | ------ | ------ |
+| todoId |  yes | string |
+Sample Request
+```json
+[
+      {
+          "status": "int"
+      }
+]
+```
+Sample Response
+```json
+[
+      {
+           "status": 200,
+            "message": "task Archieved",
+            "data": {
+                "MatchedCount": 1,
+                "ModifiedCount": 1,
+                "UpsertedCount": 0,
+                "UpsertedID": null
+            }
+      }
+]
+```
+# Fetch archived Todo #
+This endpoint is commonly used to retrieve all archived Todo
+|  |  |
+| ------ | ------ |
+| Request Type | ``` GET ``` |
+| Endpoint |  ``` /get-archived ``` |
+| Content Type |  ``` application/json ``` |
+
+```php
+curl --location --request GET 'https://todo.zuri.chat/api/v1/get-archived \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {KEY}'
+```
+Sample Response
+```json
+[
+      {
+            "status": 200,
+            "message": successful,
+            "data": {}
+      }
+]
